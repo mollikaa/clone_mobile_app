@@ -68,7 +68,7 @@ class HomePage extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   color: Color.fromARGB(255, 33, 36, 35),
-                  borderRadius: BorderRadius.circular(50), // Adjust border radius here
+                  borderRadius: BorderRadius.circular(30), // Adjust border radius here
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -108,11 +108,11 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
               UpcomingWidget(),
               SizedBox(height: 40),
               NewsMovieWidget(),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
             ],
           ),
         ),

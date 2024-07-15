@@ -36,10 +36,9 @@ class NewsMovieWidget extends StatelessWidget {
             children: [
               for (int i = 1; i < 5; i++)
                 Padding(
-                  padding: EdgeInsets.only(left: 10),
+                  padding: EdgeInsets.only(left: 10, right: 10), // Added right padding
                   child: Container(
                     width: 200,
-                    margin: EdgeInsets.only(right: 10),
                     decoration: BoxDecoration(
                       color: Color(0xFF292837),
                       borderRadius: BorderRadius.circular(10),

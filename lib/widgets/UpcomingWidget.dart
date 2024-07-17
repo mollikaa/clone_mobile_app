@@ -12,6 +12,7 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
   late PageController _pageController;
   int _currentPage = 0;
   double _viewportFraction = 0.9; // Adjust the fraction to show a portion of the next image
+  late Timer _timer; // Add a reference to the timer
 
   @override
   void initState() {
@@ -19,7 +20,11 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
     _pageController = PageController(initialPage: 0, viewportFraction: _viewportFraction);
 
     // Set up a timer for auto-sliding
-    Timer.periodic(Duration(seconds: 3), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 3), (timer) {
+      if (!mounted) {
+        timer.cancel(); // Cancel the timer if the widget is no longer mounted
+        return;
+      }
       setState(() {
         if (_currentPage < 5) {
           _currentPage++;
@@ -38,6 +43,7 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
   @override
   void dispose() {
     _pageController.dispose();
+    _timer.cancel(); // Cancel the timer in dispose
     super.dispose();
   }
 
@@ -93,7 +99,7 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
                   return Center(
                     child: SizedBox(
                       height: Curves.easeInOut.transform(value) * 300,
-                      width: MediaQuery.of(context).size.width * _viewportFraction - 2.0, // Adjusted width with padding
+                      width: MediaQuery.of(context).size.width * _viewportFraction - 5.0, // Adjusted width with padding
                       child: child,
                     ),
                   );

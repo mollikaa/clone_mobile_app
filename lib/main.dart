@@ -34,7 +34,7 @@ class MyAppState extends State<MyApp> {
       ),
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
+        '/': (context) => HomePage(),
         '/offersPage': (context) => const OffersPage(),
         '/locationPage': (context) => const LocationPage(),
         '/developerPage': (context) => const DeveloperPage(),

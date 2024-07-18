@@ -1,8 +1,7 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 
 class Customnavbar extends StatelessWidget {
-  const Customnavbar({super.key});
+  const Customnavbar({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +10,7 @@ class Customnavbar extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 20),
       decoration: const BoxDecoration(
         color: Colors.black,
-        borderRadius: BorderRadius.only(
-            // topLeft: Radius.circular(25),
-            // topRight: Radius.circular(25),
-            ),
+        borderRadius: BorderRadius.only(),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -58,6 +54,8 @@ class Customnavbar extends StatelessWidget {
       {required IconData icon,
       required String label,
       required String routeName}) {
+    bool isSelected = ModalRoute.of(context)?.settings.name == routeName;
+
     return InkWell(
       onTap: () {
         Navigator.pushNamed(context, routeName);
@@ -68,7 +66,7 @@ class Customnavbar extends StatelessWidget {
           Icon(
             icon,
             size: 32,
-            color: Colors.white,
+            color: isSelected ? const Color(0xFF9D1C1F) : Colors.white,
           ),
           const SizedBox(height: 5), // Space between icon and label
           Text(

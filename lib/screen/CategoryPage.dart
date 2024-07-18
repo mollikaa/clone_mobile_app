@@ -34,7 +34,7 @@ class Categorypage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Customnavbar(),
+      bottomNavigationBar: const Customnavbar(),
     );
   }
 }

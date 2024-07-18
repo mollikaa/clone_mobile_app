@@ -4,126 +4,112 @@ import 'package:clone_app/widgets/NewMoviesWidget.dart';
 import 'package:clone_app/widgets/UpcomingWidget.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black, // Set the background color here
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      backgroundColor: Colors.black,
+      body: CustomScrollView(
+        slivers: [
+          SliverAppBar(
+            pinned: true,
+            floating: true, // Set floating to true to hide when scrolled up
+            backgroundColor: Colors.black,
+            title: Container(
+              width: 148,
+              height: 38,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(0),
+                image: DecorationImage(
+                  image: AssetImage("images/logo legend.png"), // Replace with your logo image path
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            actions: [
+              AnimatedOpacity(
+                opacity: 1.0, // Initially visible
+                duration: Duration(milliseconds: 300), // Adjust duration as needed
+                child: Stack(
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        RichText(
-                          text: const TextSpan(
-                            children: [
-                              TextSpan(
-                                text: "Hello ",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                              TextSpan(
-                                text: "Koem",
-                                style: TextStyle(
-                                  color: Color.fromARGB(255, 237, 64,
-                                      64), // Change text color to #9D1C1F
-                                  fontSize: 28,
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const Text(
-                          "What do you want to watch?",
-                          style: TextStyle(
-                            color: Color.fromARGB(141, 242, 235, 235),
-                          ),
-                        ),
-                      ],
+                    IconButton(
+                      icon: Icon(Icons.notifications, color: Colors.white), // Set icon color to white
+                      onPressed: () {
+                        // Handle notifications
+                      },
                     ),
-                    ClipOval(
-                      child: Image.asset(
-                        "images/panda.jpg", // Adjusted image asset path
-                        height: 50,
-                        width: 50,
-                        fit: BoxFit
-                            .cover, // Ensure the image covers the circular container
+                    Positioned(
+                      top: 15,
+                      right: 15,
+                      child: Container(
+                        width: 7,
+                        height: 7,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Color(0xFF9D1C1F), // Your desired notification color
+                        ),
                       ),
                     ),
                   ],
                 ),
               ),
-              Container(
-                height: 44,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                margin: const EdgeInsets.symmetric(horizontal: 10),
+            ],
+            bottom: PreferredSize(
+              preferredSize: Size.fromHeight(44.0),
+              child: Container(
+                height: 40,
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                margin: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 33, 36, 35),
-                  borderRadius:
-                      BorderRadius.circular(5), // Adjust border radius here
+                  color: Color.fromARGB(255, 33, 36, 35),
+                  borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const Icon(
+                    Icon(
                       Icons.search,
                       color: Colors.white54,
                       size: 24,
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
-                        style: const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
                           border: InputBorder.none,
                           hintText: "Search",
                           hintStyle: TextStyle(
                             color: Colors.white54,
                           ),
                         ),
-                        // Add functionality here for search input handling
+                        onChanged: (value) {
+                          // Handle search input
+                        },
                       ),
                     ),
-                    const SizedBox(width: 10),
+                    SizedBox(width: 10),
                     Container(
                       height: 44,
                       width: 44,
-                      decoration: const BoxDecoration(
-                          // color: Color(0xFF292837),
-                          // borderRadius: BorderRadius.circular(10),
-                          ),
-                      // child: Icon(
-                      //   Icons.filter_list,
-                      //   color: Colors.white54,
-                      // ),
+                      // Optionally add color and border radius to this container if needed
                     ),
                   ],
                 ),
               ),
-              const SizedBox(height: 10),
-              const UpcomingWidget(),
-              const SizedBox(height: 40),
-              NewsMovieWidget(),
-              const SizedBox(height: 10),
-            ],
+            ),
           ),
-        ),
+          SliverList(
+            delegate: SliverChildListDelegate([
+              SizedBox(height: 10),
+              UpcomingWidget(),
+              SizedBox(height: 20), // Adjusted spacing
+              NewsMovieWidget(), // Corrected widget name
+              SizedBox(height: 5),
+            ]),
+          ),
+        ],
       ),
-      bottomNavigationBar: const Customnavbar(), // Fixed at the bottom
+      bottomNavigationBar: const Customnavbar(),
     );
   }
 }

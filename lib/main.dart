@@ -30,7 +30,11 @@ class MyAppState extends State<MyApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+<<<<<<< HEAD
         scaffoldBackgroundColor: const Color(0xFF0F1110),
+=======
+        scaffoldBackgroundColor: Colors.black,
+>>>>>>> 0a8f38de88eedf62211a45edbd2893222d95399d
       ),
       initialRoute: '/',
       routes: {

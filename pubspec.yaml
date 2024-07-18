@@ -72,6 +72,7 @@ flutter:
     - images/cus2.jpg
     - images/cus3.jpg
     - images/cus4.jpg
+<<<<<<< HEAD
     - images/loc1.jpg
     - images/loc2.jpg
     - images/loc3.jpg
@@ -83,6 +84,14 @@ flutter:
     - images/offer4.jpg
     - images/offers5.jpg
     - images/offer6.jpg
+=======
+    - images/cus5.jpg
+    - images/cus6.jpg
+    - images/cus7.jpg
+    - images/cus8.jpg
+    - images/cus9.jpg
+
+>>>>>>> 0a8f38de88eedf62211a45edbd2893222d95399d
   #   - images/a_dot_ham.jpeg
   
 

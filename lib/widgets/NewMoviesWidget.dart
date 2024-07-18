@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:clone_app/screen/MovieDetailsPage.dart';
 
 class NewsMovieWidget extends StatelessWidget {
   @override
@@ -33,14 +34,14 @@ class NewsMovieWidget extends StatelessWidget {
           ),
           SizedBox(height: 15),
           Column(
-            children: _buildMovieRows(),
+            children: _buildMovieRows(context),
           ),
         ],
       ),
     );
   }
 
-  List<Widget> _buildMovieRows() {
+  List<Widget> _buildMovieRows(BuildContext context) {
     List<Widget> rows = [];
 
     // Assuming you have 9 movies to display
@@ -54,9 +55,9 @@ class NewsMovieWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildMovieItem(i),
+              _buildMovieItem(context, i),
               SizedBox(width: 10), // Increased padding between items
-              _buildMovieItem(i + 1),
+              _buildMovieItem(context, i + 1),
             ],
           ),
         );
@@ -67,7 +68,7 @@ class NewsMovieWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              _buildMovieItem(i),
+              _buildMovieItem(context, i),
             ],
           ),
         );
@@ -79,9 +80,27 @@ class NewsMovieWidget extends StatelessWidget {
     return rows;
   }
 
-  Widget _buildMovieItem(int index) {
-    return Container(
-      margin: EdgeInsets.only(bottom:10),
+  Widget _buildMovieItem(BuildContext context, int index) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => MovieDetailPage(
+            movieTitle: 'Movie Title Here', // Replace with actual data
+            genre: 'Action/Ad', // Replace with actual data
+            duration: '2h 30m', // Replace with actual data
+            releaseDate: '2024-07-18', // Replace with actual data
+            classification: 'G', // Replace with actual data
+            description: 'This is the movie description. Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. This is the movie description. Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.', // Replace with actual data
+            imagePath: 'images/cus${index + 1}.jpg', // Replace with actual data
+            screenTypes: ['2D', '3D', 'ScreenX'],
+          ),
+        ),
+      );
+    },
+    child: Container(
+      margin: EdgeInsets.only(bottom: 10),
       width: 178,
       height: 295,
       decoration: BoxDecoration(
@@ -152,6 +171,8 @@ class NewsMovieWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
+
 }

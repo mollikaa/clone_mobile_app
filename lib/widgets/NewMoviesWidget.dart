@@ -112,7 +112,7 @@ class NewsMovieWidget extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.all(10),
-            child: const Column(
+            child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(

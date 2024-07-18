@@ -2,8 +2,8 @@
 import 'package:flutter/material.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart';
 
-class DeveloperPage extends StatelessWidget {
-  const DeveloperPage({super.key});
+class LocationPage extends StatelessWidget {
+  const LocationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class DeveloperPage extends StatelessWidget {
             children: [
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(vertical: 25, horizontal: 10),
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -101,22 +101,9 @@ class DeveloperPage extends StatelessWidget {
               const SizedBox(height: 10),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "Developer Screen",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ],
-                ),
               ),
               const SizedBox(height: 15), // Added SizedBox for spacing
-              _buildDeveloperProfiles(), // Function to build developer profiles
+              _buildLocations(), // Function to build locations
               const SizedBox(height: 10),
             ],
           ),
@@ -126,42 +113,48 @@ class DeveloperPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDeveloperProfiles() {
+  Widget _buildLocations() {
     return Column(
       children: [
-        _buildDeveloperProfile(
-          imagePath: "images/cus1.jpg",
-          name: "Saran Mollika",
-          role: "Software Engineering",
-          group: "Group B",
+        _buildLocation(
+          imagePath: "images/loc1.jpg",
+          nameLocation: "Legend Cinema 271 Mega Mall",
+          batch: "3rd Floor, Chip Mong Mega Mall",
+          icon: Icons.location_on,
         ),
-        _buildDeveloperProfile(
-          imagePath: "images/cus2.jpg",
-          name: "Saroun Sakura",
-          role: "Software Engineering",
-          group: "Group B",
+        _buildLocation(
+          imagePath: "images/loc2.jpg",
+          nameLocation: "Legend Cinema Sihanoukville",
+          batch: "PGB-5-021, 4th Floor of Prince",
+          icon: Icons.location_on,
         ),
-        _buildDeveloperProfile(
-          imagePath: "images/cus3.jpg",
-          name: "Koem Socheata",
-          role: "Software Engineering",
-          group: "Group A",
+        _buildLocation(
+          imagePath: "images/loc3.jpg",
+          nameLocation: "Legend Eden Garden",
+          batch: "City Center Boulevard, Sangkat Srah Chak",
+          icon: Icons.location_on,
         ),
-        _buildDeveloperProfile(
-          imagePath: "images/cus4.jpg",
-          name: "Uth Kim Oun",
-          role: "Software Engineering",
-          group: "Group A",
+        _buildLocation(
+          imagePath: "images/loc4.jpg",
+          nameLocation: "Legend Noro Mall",
+          batch: "5th floor, Chip Mong Noro Mall",
+          icon: Icons.location_on,
+        ),
+        _buildLocation(
+          imagePath: "images/loc4.jpg",
+          nameLocation: "Legend Meanchey",
+          batch: "3rd Floor of New Steung Mean Chey market",
+          icon: Icons.location_on,
         ),
       ],
     );
   }
 
-  Widget _buildDeveloperProfile({
+  Widget _buildLocation({
     required String imagePath,
-    required String name,
-    required String role,
-    required String group,
+    required String nameLocation,
+    required String batch,
+    required IconData icon,
   }) {
     return Padding(
       padding: const EdgeInsets.symmetric(
@@ -179,61 +172,55 @@ class DeveloperPage extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  top: 15, left: 10, right: 10, bottom: 10),
-              child: ClipRRect(
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(10),
-                  topRight: Radius.circular(10),
-                ),
-                child: Image.asset(
-                  imagePath,
-                  height: 200, // Height remains the same
-                  width: double.infinity, // Set width to fill the container
-                  fit: BoxFit.cover,
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 10, left: 10, right: 10, bottom: 10),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image.asset(
+                    imagePath,
+                    height: 200, // Height remains the same
+                    width: double.infinity, // Set width to fill the container
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              const SizedBox(height: 5),
+              Text(
+                nameLocation,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Row(
                 children: [
+                  Icon(
+                    icon,
+                    color: Colors.red,
+                    size: 16,
+                  ),
+                  const SizedBox(width: 5),
                   Text(
-                    name,
+                    batch,
                     style: const TextStyle(
                       color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
                     ),
-                  ),
-                  Text(
-                    role,
-                    style: const TextStyle(
-                      color: Colors.white70,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    children: [
-                      const SizedBox(width: 5),
-                      Text(
-                        group,
-                        style: const TextStyle(
-                          color: Colors.white70,
-                          fontSize: 14,
-                        ),
-                      ),
-                    ],
                   ),
                 ],
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

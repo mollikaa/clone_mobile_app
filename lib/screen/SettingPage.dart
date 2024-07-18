@@ -2,6 +2,8 @@ import 'package:clone_app/widgets/CustomNavBar.dart';
 import 'package:flutter/material.dart';
 
 class Settingpage extends StatelessWidget {
+  const Settingpage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,7 +13,8 @@ class Settingpage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -20,7 +23,7 @@ class Settingpage extends StatelessWidget {
                         // to go back to home pages
                         Navigator.pop(context);
                       },
-                      child: Icon(
+                      child: const Icon(
                         Icons.arrow_back,
                         color: Color.fromARGB(255, 9, 233, 91),
                         size: 30,
@@ -34,7 +37,7 @@ class Settingpage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Customnavbar(),
+      bottomNavigationBar: const Customnavbar(),
     );
   }
 }

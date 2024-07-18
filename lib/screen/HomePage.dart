@@ -4,6 +4,8 @@ import 'package:clone_app/widgets/NewMoviesWidget.dart';
 import 'package:clone_app/widgets/UpcomingWidget.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +16,8 @@ class HomePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.symmetric(vertical: 18, horizontal: 10),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 18, horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -22,7 +25,7 @@ class HomePage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                          text: TextSpan(
+                          text: const TextSpan(
                             children: [
                               TextSpan(
                                 text: "Hello ",
@@ -35,7 +38,8 @@ class HomePage extends StatelessWidget {
                               TextSpan(
                                 text: "Koem",
                                 style: TextStyle(
-                                  color: Color.fromARGB(255, 237, 64, 64), // Change text color to #9D1C1F
+                                  color: Color.fromARGB(255, 237, 64,
+                                      64), // Change text color to #9D1C1F
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -43,7 +47,7 @@ class HomePage extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Text(
+                        const Text(
                           "What do you want to watch?",
                           style: TextStyle(
                             color: Color.fromARGB(141, 242, 235, 235),
@@ -56,7 +60,8 @@ class HomePage extends StatelessWidget {
                         "images/panda.jpg", // Adjusted image asset path
                         height: 50,
                         width: 50,
-                        fit: BoxFit.cover, // Ensure the image covers the circular container
+                        fit: BoxFit
+                            .cover, // Ensure the image covers the circular container
                       ),
                     ),
                   ],
@@ -64,25 +69,26 @@ class HomePage extends StatelessWidget {
               ),
               Container(
                 height: 44,
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                margin: EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 33, 36, 35),
-                  borderRadius: BorderRadius.circular(30), // Adjust border radius here
+                  color: const Color.fromARGB(255, 33, 36, 35),
+                  borderRadius:
+                      BorderRadius.circular(5), // Adjust border radius here
                 ),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.search,
                       color: Colors.white54,
                       size: 24,
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Expanded(
                       child: TextFormField(
-                        style: TextStyle(color: Colors.white),
-                        decoration: InputDecoration(
+                        style: const TextStyle(color: Colors.white),
+                        decoration: const InputDecoration(
                           border: InputBorder.none,
                           hintText: "Search",
                           hintStyle: TextStyle(
@@ -92,14 +98,14 @@ class HomePage extends StatelessWidget {
                         // Add functionality here for search input handling
                       ),
                     ),
-                    SizedBox(width: 10),
+                    const SizedBox(width: 10),
                     Container(
                       height: 44,
                       width: 44,
-                      decoration: BoxDecoration(
-                        // color: Color(0xFF292837),
-                        // borderRadius: BorderRadius.circular(10),
-                      ),
+                      decoration: const BoxDecoration(
+                          // color: Color(0xFF292837),
+                          // borderRadius: BorderRadius.circular(10),
+                          ),
                       // child: Icon(
                       //   Icons.filter_list,
                       //   color: Colors.white54,
@@ -108,16 +114,16 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 10),
-              UpcomingWidget(),
-              SizedBox(height: 40),
+              const SizedBox(height: 10),
+              const UpcomingWidget(),
+              const SizedBox(height: 40),
               NewsMovieWidget(),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
             ],
           ),
         ),
       ),
-      bottomNavigationBar:Customnavbar(), // Fixed at the bottom
+      bottomNavigationBar: const Customnavbar(), // Fixed at the bottom
     );
   }
 }

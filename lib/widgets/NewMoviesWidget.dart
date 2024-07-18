@@ -1,12 +1,15 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class NewsMovieWidget extends StatelessWidget {
+  const NewsMovieWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.symmetric(horizontal: 10),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -29,22 +32,23 @@ class NewsMovieWidget extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 15), // Added SizedBox for spacing
+        const SizedBox(height: 15), // Added SizedBox for spacing
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
               for (int i = 1; i < 5; i++)
                 Padding(
-                  padding: EdgeInsets.only(left: 10, right: 10), // Added right padding
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10), // Added right padding
                   child: Container(
                     width: 200,
                     decoration: BoxDecoration(
-                      color: Color(0xFF292837),
+                      color: const Color(0xFF292837),
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: [
                         BoxShadow(
-                          color: Color(0xFF292837).withOpacity(0.5),
+                          color: const Color(0xFF292837).withOpacity(0.5),
                           spreadRadius: 2,
                           blurRadius: 6,
                         ),
@@ -54,18 +58,19 @@ class NewsMovieWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         ClipRRect(
-                          borderRadius: BorderRadius.only(
+                          borderRadius: const BorderRadius.only(
                             topLeft: Radius.circular(10),
                             topRight: Radius.circular(10),
                           ),
                           child: Image.asset(
                             "images/cus$i.jpg", // Adjusted asset path
-                            height: 200, // Reduced height to fit within container
+                            height:
+                                200, // Reduced height to fit within container
                             width: 200,
                             fit: BoxFit.cover,
                           ),
                         ),
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.all(10),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,

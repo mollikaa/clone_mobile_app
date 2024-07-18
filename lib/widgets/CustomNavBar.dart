@@ -1,59 +1,81 @@
+// ignore: file_names
 import 'package:flutter/material.dart';
 
 class Customnavbar extends StatelessWidget {
+  const Customnavbar({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 65,
-      padding: EdgeInsets.symmetric(horizontal: 20),
-      decoration: BoxDecoration(
+      height: 80, // Adjusted height to accommodate labels
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.only(
-          // topLeft: Radius.circular(25),
-          // topRight: Radius.circular(25),
-        ),
+            // topLeft: Radius.circular(25),
+            // topRight: Radius.circular(25),
+            ),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/'); // Navigate to home page
-            },
-            child: Icon(
-              Icons.home,
-              size: 32,
-              color: Color(0xFF9D1C1F),
-            ),
+          _buildNavItem(
+            context,
+            icon: Icons.home,
+            label: 'Home',
+            routeName: '/',
           ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/categoryPage'); // Navigate to category page
-            },
-            child: Icon(
-              Icons.category,
-              size: 32,
-              color: Colors.white,
-            ),
+          _buildNavItem(
+            context,
+            icon: Icons.percent,
+            label: 'Offers',
+            routeName: '/offersPage',
           ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/developerPage'); // Navigate to DeveloperPage
-            },
-            child: Icon(
-              Icons.people,
-              size: 32,
-              color: Colors.white,
-            ),
+          _buildNavItem(
+            context,
+            icon: Icons.location_on,
+            label: 'Location',
+            routeName: '/locationPage',
           ),
-          InkWell(
-            onTap: () {
-              Navigator.pushNamed(context, '/settingPage'); // Navigate to setting page
-            },
-            child: Icon(
-              Icons.settings,
-              size: 32,
+          _buildNavItem(
+            context,
+            icon: Icons.people,
+            label: 'Developers',
+            routeName: '/developerPage',
+          ),
+          _buildNavItem(
+            context,
+            icon: Icons.widgets,
+            label: 'More',
+            routeName: '/settingPage',
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildNavItem(BuildContext context,
+      {required IconData icon,
+      required String label,
+      required String routeName}) {
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, routeName);
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            icon,
+            size: 32,
+            color: Colors.white,
+          ),
+          const SizedBox(height: 5), // Space between icon and label
+          Text(
+            label,
+            style: const TextStyle(
               color: Colors.white,
+              fontSize: 15,
             ),
           ),
         ],

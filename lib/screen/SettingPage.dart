@@ -1,5 +1,5 @@
-import 'package:clone_app/widgets/CustomNavBar.dart';
 import 'package:flutter/material.dart';
+import 'package:clone_app/widgets/CustomNavBar.dart'; // Ensure correct import path
 
 class Settingpage extends StatelessWidget {
   const Settingpage({super.key});
@@ -20,8 +20,7 @@ class Settingpage extends StatelessWidget {
                   children: [
                     InkWell(
                       onTap: () {
-                        // to go back to home pages
-                        Navigator.pop(context);
+                        Navigator.pop(context); // Navigate back
                       },
                       child: const Icon(
                         Icons.arrow_back,
@@ -29,7 +28,7 @@ class Settingpage extends StatelessWidget {
                         size: 30,
                       ),
                     ),
-                    // Add other widgets for your category page content here
+                    // Add other widgets for your setting page content here
                   ],
                 ),
               ),
@@ -37,7 +36,23 @@ class Settingpage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const Customnavbar(),
+      bottomNavigationBar: Customnavbar(
+        selectedIndex: 4, // Example: Set your selected index here
+        onTap: (index) {
+          // Handle navigation based on the index
+          if (index == 0) {
+            Navigator.pushNamed(context, '/');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/offersPage');
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/locationPage');
+          } else if (index == 3) {
+            Navigator.pushNamed(context, '/developerPage');
+          } else if (index == 4) {
+            Navigator.pushNamed(context, '/settingPage');
+          }
+        },
+      ),
     );
   }
 }

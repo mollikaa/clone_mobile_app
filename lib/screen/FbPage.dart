@@ -1,9 +1,8 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
-import 'package:clone_app/widgets/CustomNavBar.dart';
+import 'package:clone_app/widgets/CustomNavBar.dart'; // Adjust import path as needed
 
 class FbPage extends StatelessWidget {
-  const FbPage({super.key});
+  const FbPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -73,16 +72,33 @@ class FbPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10), // Added SizedBox for spacing
-              _buildLocations(), // Function to build offers
+              _buildLocations(), // Function to build locations
               const SizedBox(height: 10),
             ],
           ),
         ),
       ),
-      bottomNavigationBar: const Customnavbar(), // Fixed at the bottom
+      bottomNavigationBar: Customnavbar(
+        selectedIndex: 0, // Set the appropriate selected index
+        onTap: (index) {
+          // Handle navigation based on the index
+          if (index == 0) {
+            Navigator.pushNamed(context, '/');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/offersPage');
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/locationPage');
+          } else if (index == 3) {
+            Navigator.pushNamed(context, '/developerPage');
+          } else if (index == 4) {
+            Navigator.pushNamed(context, '/settingPage');
+          }
+        },
+      ),
     );
   }
- Widget _buildLocations() {
+
+  Widget _buildLocations() {
     return Column(
       children: [
         _buildLocation(
@@ -145,81 +161,68 @@ class FbPage extends StatelessWidget {
   }
 
   Widget _buildLocation({
-  required String nameLocation,
-  required String batch,
-  required IconData icon,
-}) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-    child: Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: const Color(0xFF292837),
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF292837).withOpacity(0.5),
-            spreadRadius: 2,
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          // Adjust row for better layout
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(
-                    top: 0,
-                    left: 10,
-                    right: 10,
-                    bottom: 10,
-                  ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(10),
-                      topRight: Radius.circular(10),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Text(
-                  nameLocation,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Row(
-                  children: [
-                    Icon(
-                      icon,
-                      color: Colors.red,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 5),
-                    Text(
-                      batch,
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 14,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+    required String nameLocation,
+    required String batch,
+    required IconData icon,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: const Color(0xFF292837),
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0xFF292837).withOpacity(0.5),
+              spreadRadius: 2,
+              blurRadius: 6,
             ),
-            const Icon(Icons.arrow_forward_ios, color:Colors.white), // Forward icon
           ],
         ),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Row(
+            // Adjust row for better layout
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 5),
+                  Text(
+                    nameLocation,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        icon,
+                        color: Colors.red,
+                        size: 16,
+                      ),
+                      const SizedBox(width: 5),
+                      Text(
+                        batch,
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const Icon(Icons.arrow_forward_ios,
+                  color: Colors.white), // Forward icon
+            ],
+          ),
+        ),
       ),
-    ),
-  );
-}
+    );
+  }
 }

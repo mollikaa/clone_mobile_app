@@ -1,9 +1,8 @@
-// ignore: file_names
 import 'package:flutter/material.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart';
 
 class DeveloperPage extends StatelessWidget {
-  const DeveloperPage({super.key});
+  const DeveloperPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -86,10 +85,7 @@ class DeveloperPage extends StatelessWidget {
                     Container(
                       height: 44,
                       width: 44,
-                      decoration: const BoxDecoration(
-                          // color: Color(0xFF292837),
-                          // borderRadius: BorderRadius.circular(10),
-                          ),
+                      decoration: BoxDecoration(),
                       // child: Icon(
                       //   Icons.filter_list,
                       //   color: Colors.white54,
@@ -122,7 +118,25 @@ class DeveloperPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const Customnavbar(), // Fixed at the bottom
+      bottomNavigationBar: Customnavbar(
+        selectedIndex: 3, // Index for the Developer page
+        onTap: (index) {
+          // Handle navigation based on the index
+          if (index == 0) {
+            Navigator.pushNamed(context, '/');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/offersPage');
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/locationPage');
+          } else if (index == 3) {
+            Navigator.pushNamed(context, '/developerPage');
+          } else if (index == 4) {
+            Navigator.pushNamed(context, '/fbPage');
+          } else if (index == 5) {
+            Navigator.pushNamed(context, '/settingPage');
+          }
+        },
+      ),
     );
   }
 
@@ -164,10 +178,9 @@ class DeveloperPage extends StatelessWidget {
     required String group,
   }) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: 10, horizontal: 10), // Adjusted padding
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
-        width: double.infinity, // Set width to fill the container
+        width: double.infinity,
         decoration: BoxDecoration(
           color: const Color(0xFF292837),
           borderRadius: BorderRadius.circular(10),
@@ -184,7 +197,11 @@ class DeveloperPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(
-                  top: 15, left: 10, right: 10, bottom: 10),
+                top: 15,
+                left: 10,
+                right: 10,
+                bottom: 10,
+              ),
               child: ClipRRect(
                 borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(10),
@@ -192,8 +209,8 @@ class DeveloperPage extends StatelessWidget {
                 ),
                 child: Image.asset(
                   imagePath,
-                  height: 200, // Height remains the same
-                  width: double.infinity, // Set width to fill the container
+                  height: 200,
+                  width: double.infinity,
                   fit: BoxFit.cover,
                 ),
               ),

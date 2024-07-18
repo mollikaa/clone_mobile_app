@@ -20,7 +20,8 @@ class HomePage extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(0),
                 image: DecorationImage(
-                  image: AssetImage("images/logo legend.png"), // Replace with your logo image path
+                  image: AssetImage(
+                      "images/logo legend.png"), // Replace with your logo image path
                   fit: BoxFit.cover,
                 ),
               ),
@@ -28,11 +29,13 @@ class HomePage extends StatelessWidget {
             actions: [
               AnimatedOpacity(
                 opacity: 1.0, // Initially visible
-                duration: Duration(milliseconds: 300), // Adjust duration as needed
+                duration:
+                    Duration(milliseconds: 300), // Adjust duration as needed
                 child: Stack(
                   children: [
                     IconButton(
-                      icon: Icon(Icons.notifications, color: Colors.white), // Set icon color to white
+                      icon: Icon(Icons.notifications,
+                          color: Colors.white), // Set icon color to white
                       onPressed: () {
                         // Handle notifications
                       },
@@ -45,7 +48,8 @@ class HomePage extends StatelessWidget {
                         height: 7,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Color(0xFF9D1C1F), // Your desired notification color
+                          color: Color(
+                              0xFF9D1C1F), // Your desired notification color
                         ),
                       ),
                     ),
@@ -109,7 +113,23 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const Customnavbar(),
+      bottomNavigationBar: Customnavbar(
+        selectedIndex: 0, // Index for the Home page
+        onTap: (index) {
+          // Handle navigation based on the index
+          if (index == 0) {
+            Navigator.pushNamed(context, '/');
+          } else if (index == 1) {
+            Navigator.pushNamed(context, '/offersPage');
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/locationPage');
+          } else if (index == 3) {
+            Navigator.pushNamed(context, '/developerPage');
+          } else if (index == 4) {
+            Navigator.pushNamed(context, '/settingPage');
+          }
+        },
+      ),
     );
   }
 }

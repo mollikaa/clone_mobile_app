@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Customnavbar extends StatelessWidget {
-  const Customnavbar({Key? key});
+  const Customnavbar(
+      {Key? key,
+      required int selectedIndex,
+      required Null Function(dynamic index) onTap});
 
   @override
   Widget build(BuildContext context) {

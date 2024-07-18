@@ -53,9 +53,9 @@ class OffersPage extends StatelessWidget {
               ),
               // Replace the search box with an image
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: BorderRadius.circular(3),
                   child: Image.asset(
                     'images/offer6.jpg',
                     height: 150,

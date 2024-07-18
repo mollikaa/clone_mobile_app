@@ -35,6 +35,12 @@ class Customnavbar extends StatelessWidget {
           ),
           _buildNavItem(
             context,
+            icon: Icons.local_drink,
+            label: 'F&B',
+            routeName: '/fbPage',
+          ),
+          _buildNavItem(
+            context,
             icon: Icons.people,
             label: 'Developers',
             routeName: '/developerPage',

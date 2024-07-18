@@ -2,6 +2,7 @@ import 'package:clone_app/screen/DeveloperPage.dart';
 import 'package:clone_app/screen/HomePage.dart';
 import 'package:clone_app/screen/LocationPage.dart';
 import 'package:clone_app/screen/OffersPage.dart';
+import 'package:clone_app/screen/FbPage.dart';
 import 'package:clone_app/screen/SettingPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -38,6 +39,7 @@ class MyAppState extends State<MyApp> {
         '/offersPage': (context) => const OffersPage(),
         '/locationPage': (context) => const LocationPage(),
         '/developerPage': (context) => const DeveloperPage(),
+        '/fbPage': (context) => const FbPage(),
         '/settingPage': (context) => const Settingpage(),
       },
     );

@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
+
 class SeatSelectPage extends StatefulWidget {
   final String movieTitle;
   final String showTime;
@@ -27,8 +31,12 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor, 
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
@@ -38,7 +46,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
         ),
         title: Text(
           widget.movieTitle,
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.white ),
         ),
       ),
       body: Column(
@@ -54,7 +62,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       widget.movieTitle,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isDarkMode? Colors.white : Colors.black,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -63,7 +71,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       widget.showTime,
                       style: TextStyle(
-                        color: Colors.white70,
+                        color:isDarkMode? Colors.white70 : Colors.black,
                         fontSize: 16,
                       ),
                     ),
@@ -75,7 +83,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       'Price',
                       style: TextStyle(
-                        color: Colors.white70,
+                        color: isDarkMode?  Colors.white70 : Colors.black,
                         fontSize: 16,
                       ),
                     ),
@@ -83,7 +91,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       widget.price,
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isDarkMode? Colors.white : Colors.black,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
@@ -158,7 +166,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       'Selected Seats',
                       style: TextStyle(
-                        color: Colors.white,
+                        color:isDarkMode? Colors.white : Colors.black,
                         fontSize: 16,
                       ),
                     ),
@@ -169,7 +177,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                           .map((seat) => Text(
                                 seat,
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color:isDarkMode? Colors.white : Colors.black,
                                   fontSize: 16,
                                 ),
                               ))
@@ -183,7 +191,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       'Summary',
                       style: TextStyle(
-                        color: Colors.white,
+                        color: isDarkMode? Colors.white : Colors.black,
                         fontSize: 16,
                       ),
                     ),
@@ -191,7 +199,7 @@ class _SeatSelectPageState extends State<SeatSelectPage> {
                     Text(
                       '\$${_getTotalPrice()}',
                       style: TextStyle(
-                        color: Colors.white,
+                        color:isDarkMode? Colors.white : Colors.black,
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
+
 class UpcomingWidget extends StatefulWidget {
   const UpcomingWidget({Key? key}) : super(key: key);
 
@@ -49,6 +53,9 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -58,9 +65,10 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Upcoming Movies",
+                "${languageLogic.lang.upComming}",
                 style: TextStyle(
-                  color: Colors.white,
+                  // color: Colors.white,
+                  color: isDarkMode ? Colors.white : Colors.black,
                   fontSize: 25,
                   fontWeight: FontWeight.w500,
                 ),
@@ -72,7 +80,8 @@ class _UpcomingWidgetState extends State<UpcomingWidget> {
                 child: Text(
                   "See all",
                   style: TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
                   ),

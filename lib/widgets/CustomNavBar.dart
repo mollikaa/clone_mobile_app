@@ -42,12 +42,12 @@ class Customnavbar extends StatelessWidget {
             label: 'F&B',
             routeName: '/fbPage',
           ),
-          _buildNavItem(
-            context,
-            icon: Icons.people,
-            label: 'Developers',
-            routeName: '/developerPage',
-          ),
+          // _buildNavItem(
+          //   context,
+          //   icon: Icons.people,
+          //   label: 'Developers',
+          //   routeName: '/developerPage',
+          // ),
           _buildNavItem(
             context,
             icon: Icons.widgets,

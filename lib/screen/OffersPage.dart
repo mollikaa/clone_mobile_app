@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart'; // Ensure correct import path
 import 'OfferDetailsPage.dart'; // Import the new page
 
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class OffersPage extends StatelessWidget {
   const OffersPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+  var languageLogic = context.watch<LanguageLogic>();
+  var theme = Theme.of(context);
+  bool isDarkMode = theme.brightness == Brightness.dark;   
     return Scaffold(
-      backgroundColor: Colors.black, // Set the background color here
+      // backgroundColor: Colors.black, // Set the background color here
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -65,15 +72,16 @@ class OffersPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "What we offer",
+                      "${languageLogic.lang.offer}",
                       style: TextStyle(
-                        color: Colors.white,
+                        // color: Colors.white,
+                        color: isDarkMode ? Colors.white : Colors.black,
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                       ),
@@ -109,12 +117,15 @@ class OffersPage extends StatelessWidget {
   }
 
   Widget _buildOffers(BuildContext context) {
+  var languageLogic = context.watch<LanguageLogic>();
+  var theme = Theme.of(context);
+  bool isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       children: [
         _buildOffer(
           context: context, // Pass context to _buildOffer
           imagePath: "images/offers1.jpg",
-          title: "Golden Pass",
+          title: "${languageLogic.lang.goldenPass}",
           description: '''
 Campaign Mechanism:
 - Title: GOLDEN PASS
@@ -140,7 +151,7 @@ Terms & Conditions:
         _buildOffer(
           context: context,
           imagePath: "images/offer2.jpg",
-          title: "Celebrate Coca-Cola Day with us!",
+          title: "${languageLogic.lang.cocaDay}",
           description: '''
 Get a Free Refill Every Thursday during the second week of the month! 🥤🥤🥤🤩
 Simply purchase a medium or large Coca-Cola and enjoy a free refill of a medium-sized Coca-Cola.Here are the details:
@@ -154,7 +165,7 @@ Don't miss out on this special deal! Head to any Legend Cinemas or Legend Premiu
           context: context,
           imagePath: "images/offer3.jpg",
           title:
-              "Special price for students and senior citizens. Applicable on weekdays, weekends, and public holidays",
+              "${languageLogic.lang.studentOffer}",
           description: '''
 Terms &Conditions :
 - This rate card applies for weekday, weekday, and public holiday
@@ -169,7 +180,7 @@ Terms &Conditions :
         _buildOffer(
           context: context,
           imagePath: "images/offer4.jpg",
-          title: "Buy 1 Get 1 Ticket Free!",
+          title: "${languageLogic.lang.buy1free1}",
           description: '''
 PROMOTION: MEMBERSHIP CARD | BUY 1 GET 1 ON TUESDAY 2024 
 Find the information below:
@@ -190,7 +201,7 @@ NEW TERMS &CONDITIONS :
           context: context,
           imagePath: "images/offers5.jpg",
           title:
-              "Enjoy weekly discounts by simply registering as a Smart VIP subscriber",
+              "${languageLogic.lang.weekly}",
           description: '''
 Become a Smart VIP subscriber to enjoy discounts on tickets, food, and soft drinks.
 - Discount 15% on movie tickets and F&B at any Legend cinemas from Monday to Wednesday.
@@ -217,6 +228,9 @@ Term & Condition:
     required String title,
     required String description,
   }) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;    
     return Padding(
       padding: const EdgeInsets.symmetric(
           vertical: 10, horizontal: 10), // Adjusted padding
@@ -236,7 +250,8 @@ Term & Condition:
         child: Container(
           width: double.infinity, // Set width to fill the container
           decoration: BoxDecoration(
-            color: const Color(0xFF292837),
+            // color: const Color(0xFF292837),
+            color: isDarkMode ? Color(0xFF292837) : Colors.white,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -269,8 +284,9 @@ Term & Condition:
                 padding: const EdgeInsets.all(10),
                 child: Text(
                   title,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style: TextStyle(
+                    // color: Colors.white,
+                    color: isDarkMode ?Colors.white : Color(0xFF292837),
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),

@@ -2,13 +2,20 @@ import 'package:flutter/material.dart';
 import 'LocationDetailsPage.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart'; // Ensure the path is correct
 
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class LocationPage extends StatelessWidget {
   const LocationPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;    
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -55,16 +62,17 @@ class LocationPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 33, 36, 35),
+                  // color: const Color.fromARGB(255, 33, 36, 35),
+                  color: isDarkMode? const Color.fromARGB(255, 33, 36, 35) : Color(0xFF9D1C1F),
                   borderRadius: BorderRadius.circular(5),
                 ),
-                child: const Row(
+                child:  Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(Icons.search, color: Colors.white54, size: 20),
                     SizedBox(width: 7),
                     Text(
-                      "Search",
+                      "${languageLogic.lang.hintText}",
                       style: TextStyle(color: Colors.white54, fontSize: 17),
                     ),
                   ],
@@ -75,10 +83,11 @@ class LocationPage extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      "All Location",
+                     Text(
+                      "${languageLogic.lang.location}",
                       style: TextStyle(
-                        color: Colors.white,
+                        // color: Colors.white,
+                        color: isDarkMode ? Colors.white : Colors.black,
                         fontSize: 22,
                         fontWeight: FontWeight.w500,
                       ),
@@ -153,6 +162,9 @@ class LocationPage extends StatelessWidget {
     required String batch,
     required IconData icon,
   }) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;    
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -170,7 +182,8 @@ class LocationPage extends StatelessWidget {
         child: Container(
           width: double.infinity,
           decoration: BoxDecoration(
-            color: const Color(0xFF292837),
+            // color: const Color(0xFF292837),
+             color: isDarkMode ? Color(0xFF292837) : Colors.white,
             borderRadius: BorderRadius.circular(10),
             boxShadow: [
               BoxShadow(
@@ -204,8 +217,9 @@ class LocationPage extends StatelessWidget {
                 const SizedBox(height: 5),
                 Text(
                   nameLocation,
-                  style: const TextStyle(
-                    color: Colors.white,
+                  style:  TextStyle(
+                    // color: Colors.white,
+                    color: isDarkMode ?Colors.white : Color(0xFF292837),
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -220,8 +234,9 @@ class LocationPage extends StatelessWidget {
                     const SizedBox(width: 5),
                     Text(
                       batch,
-                      style: const TextStyle(
-                        color: Colors.white,
+                      style:  TextStyle(
+                        // color: Colors.white,
+                        color: isDarkMode ?Colors.white : Color(0xFF292837),
                         fontSize: 14,
                       ),
                     ),

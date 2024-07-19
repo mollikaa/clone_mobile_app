@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart'; // Adjust import path as needed
 
+
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class FbPage extends StatelessWidget {
   const FbPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark; 
     return Scaffold(
-      backgroundColor: Colors.black, // Set the background color here
+     // backgroundColor: Colors.black, // Set the background color here
+     backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -23,12 +31,13 @@ class FbPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                          text: const TextSpan(
+                          text:  TextSpan(
                             children: [
                               TextSpan(
                                 text: "F&B",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  // color: Colors.white,
+                                  color: isDarkMode ? Colors.white : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -55,15 +64,16 @@ class FbPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Choose Cinema",
+                      "${languageLogic.lang.cinema}",
                       style: TextStyle(
-                        color: Colors.white,
+                        // color: Colors.white,
+                        color: isDarkMode ? Colors.white : Colors.black,
                         fontSize: 23,
                         fontWeight: FontWeight.w500,
                       ),
@@ -72,7 +82,7 @@ class FbPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10), // Added SizedBox for spacing
-              _buildLocations(), // Function to build locations
+              _buildLocations(context), // Function to build locations
               const SizedBox(height: 10),
             ],
           ),
@@ -98,60 +108,74 @@ class FbPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLocations() {
+   Widget _buildLocations(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;  
     return Column(
       children: [
         _buildLocation(
+          context: context,
           nameLocation: "Legend Eden Garden",
           batch: "City Center Boulevard, Sangkat Srag Chak",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Toul Kork",
           batch: "TK Avenue Mall, Street 315",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Premium Exchange Square",
           batch: "Street 106, Corner of Street 61",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend SenSok",
           batch: "4th floor, Chip Mong SenSok Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Meanchey",
           batch: "3rd Floor of New Steung Mean Chey market",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Olympia",
           batch: "6tth floor, The Olympia Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Noro Mall",
           batch: "5th floor, Chip Mong Noro Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Midtown Mall",
           batch: "1st Floor Midtown Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend K Mall",
           batch: "2nd Floor K Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend 271 Mega Mall",
           batch: "3rd Floor Chip Mong Mega Mall",
           icon: Icons.location_on,
         ),
         _buildLocation(
+          context: context,
           nameLocation: "Legend Siem Reap",
           batch: "Level 3, The Heritage Walk",
           icon: Icons.location_on,
@@ -160,17 +184,22 @@ class FbPage extends StatelessWidget {
     );
   }
 
-  Widget _buildLocation({
+  Widget _buildLocation( {
+    required BuildContext context,
     required String nameLocation,
     required String batch,
     required IconData icon,
   }) {
+        var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;    
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFF292837),
+         // color: const Color(0xFF292837),
+          color: isDarkMode ? Color(0xFF292837) : Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -192,8 +221,9 @@ class FbPage extends StatelessWidget {
                   const SizedBox(height: 5),
                   Text(
                     nameLocation,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style: TextStyle(
+                      //color: Colors.white,
+                      color: isDarkMode ?Colors.white : Color(0xFF292837),
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
@@ -208,8 +238,9 @@ class FbPage extends StatelessWidget {
                       const SizedBox(width: 5),
                       Text(
                         batch,
-                        style: const TextStyle(
-                          color: Colors.white,
+                        style:  TextStyle(
+                          // color: Colors.white,
+                          color: isDarkMode ?Colors.white : Color(0xFF292837),
                           fontSize: 14,
                         ),
                       ),

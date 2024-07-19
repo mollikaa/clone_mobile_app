@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'SeatSelectPage.dart'; // Adjust the import paths as necessary
 
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class ShowTimesPage extends StatelessWidget {
   final String movieTitle;
   final List<Map<String, dynamic>> showTimes; // Example structure for show times
@@ -16,8 +19,12 @@ class ShowTimesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor, 
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
@@ -34,7 +41,7 @@ class ShowTimesPage extends StatelessWidget {
             Text(
               movieTitle,
               style: TextStyle(
-                color: Colors.white,
+                color:isDarkMode? Colors.white : Colors.black,
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
@@ -42,9 +49,9 @@ class ShowTimesPage extends StatelessWidget {
             SizedBox(height: 20),
             _buildShowTimes(context),
             SizedBox(height: 20),
-            _buildCinemaBranches(),
+            _buildCinemaBranches(context),
             SizedBox(height: 20),
-            _buildScreenTypes(),
+            _buildScreenTypes(context),
           ],
         ),
       ),
@@ -52,13 +59,16 @@ class ShowTimesPage extends StatelessWidget {
   }
 
   Widget _buildShowTimes(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Show Times & Tickets Price:',
           style: TextStyle(
-            color: Colors.white,
+            color: isDarkMode ?Colors.white : Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -82,8 +92,15 @@ class ShowTimesPage extends StatelessWidget {
               margin: EdgeInsets.only(bottom: 10),
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: Colors.grey[800],
+                color: isDarkMode? Colors.grey[800] : Colors.white,
                 borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+              BoxShadow(
+                color: const Color(0xFF292837).withOpacity(0.5),
+                spreadRadius: 2,
+                blurRadius: 6,
+              ),
+            ],
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -91,14 +108,14 @@ class ShowTimesPage extends StatelessWidget {
                   Text(
                     '${showTime['date']} - ${showTime['time']}',
                     style: TextStyle(
-                      color: Colors.white,
+                      color:isDarkMode? Colors.white : Colors.black,
                       fontSize: 16,
                     ),
                   ),
                   Text(
                     '${showTime['price']}',
                     style: TextStyle(
-                      color: Colors.white,
+                      color: isDarkMode? Colors.white : Colors.black,
                       fontSize: 16,
                     ),
                   ),
@@ -111,14 +128,17 @@ class ShowTimesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildCinemaBranches() {
+  Widget _buildCinemaBranches(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Cinema Branches:',
           style: TextStyle(
-            color: Colors.white,
+            color: isDarkMode ? Colors.white : Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
@@ -130,7 +150,7 @@ class ShowTimesPage extends StatelessWidget {
             child: Text(
               branch,
               style: TextStyle(
-                color: Colors.white70,
+                color: isDarkMode ? Colors.white70 : Colors.black,
                 fontSize: 16,
               ),
             ),
@@ -140,14 +160,17 @@ class ShowTimesPage extends StatelessWidget {
     );
   }
 
-  Widget _buildScreenTypes() {
+  Widget _buildScreenTypes(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           'Screen Types:',
           style: TextStyle(
-            color: Colors.white,
+            color: isDarkMode? Colors.white : Colors.black,
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),

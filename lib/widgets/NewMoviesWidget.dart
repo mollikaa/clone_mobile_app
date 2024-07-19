@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:clone_app/screen/MovieDetailsPage.dart';
 
+
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class NewsMovieWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return SingleChildScrollView(
       physics: AlwaysScrollableScrollPhysics(),
       child: Column(
@@ -15,9 +22,10 @@ class NewsMovieWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "New Movie",
+                  "${languageLogic.lang.newMovie}",
                   style: TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 25,
                     fontWeight: FontWeight.w500,
                   ),
@@ -25,7 +33,8 @@ class NewsMovieWidget extends StatelessWidget {
                 Text(
                   "More",
                   style: TextStyle(
-                    color: Colors.white,
+                    // color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                     fontSize: 16,
                   ),
                 ),

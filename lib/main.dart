@@ -5,6 +5,7 @@ import 'package:clone_app/screen/OffersPage.dart';
 import 'package:clone_app/screen/FbPage.dart';
 import 'package:clone_app/screen/SettingPage.dart';
 import 'package:clone_app/screen/ShowTimesPage.dart';
+import 'package:clone_app/screen/SeatSelectPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -44,12 +45,17 @@ class MyAppState extends State<MyApp> {
         '/settingPage': (context) => const Settingpage(),
         '/showtime': (context) => ShowTimesPage(movieTitle: 'Movie Title Here', // Provide default values or handle routing data
           showTimes: [
-            {'date': '2024-07-20', 'time': '14:15', 'price': '\$4.50'},
-            {'date': '2024-07-21', 'time': '18:00', 'price': '\$5.00'},
-            {'date': '2024-07-21', 'time': '21:00', 'price': '\$7.00'},
+            {'date': '2024-07-20', 'time': '14:15', 'price': '\$10.00'},
+            {'date': '2024-07-21', 'time': '18:00', 'price': '\$9.45'},
+            {'date': '2024-07-21', 'time': '21:00', 'price': '\$12.00'},
           ],
           cinemaBranches: ['Cinema 1 - Legend Premium Exchange Square', 'Cinema 2 - Legend Noro Mall', 'Cinema 3 - Legend Siem Reap'],
           screenTypes: ['2D', '3D', 'ScreenX'],),
+          '/seatSelection': (context) => SeatSelectPage(
+          movieTitle: 'Example Movie', // Provide default values or handle routing data
+          showTime: '2024-07-20 - 18:00',
+          price: '\$4.5',
+        ),
       },
     );
   }

@@ -5,7 +5,7 @@ class LanguageLogic extends ChangeNotifier{
   int _langIndex = 0; 
   int get langIndex => _langIndex;
 
-  Language _lang = Khmer();
+  Language _lang = Language();
   Language get lang => _lang; 
 
   void changeToKhmer() {

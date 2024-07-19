@@ -14,9 +14,10 @@ class OffersPage extends StatelessWidget {
   var theme = Theme.of(context);
   bool isDarkMode = theme.brightness == Brightness.dark;   
     return Scaffold(
-      // backgroundColor: Colors.black, // Set the background color here
+      //backgroundColor: Colors.black, // Set the background color here
       backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
+
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,12 +32,12 @@ class OffersPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                          text: const TextSpan(
+                          text: TextSpan(
                             children: [
                               TextSpan(
                                 text: "Legend ",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color:isDarkMode? Colors.white : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -57,6 +58,7 @@ class OffersPage extends StatelessWidget {
                     ),
                   ],
                 ),
+
               ),
               // Replace the search box with an image
               Padding(

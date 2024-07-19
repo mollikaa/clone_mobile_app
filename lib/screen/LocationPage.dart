@@ -31,12 +31,12 @@ class LocationPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                          text: const TextSpan(
+                          text: TextSpan(
                             children: [
                               TextSpan(
                                 text: "Legend ",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color: isDarkMode ? Colors.white : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -55,7 +55,9 @@ class LocationPage extends StatelessWidget {
                       ],
                     ),
                   ],
+
                 ),
+
               ),
               Container(
                 height: 44,

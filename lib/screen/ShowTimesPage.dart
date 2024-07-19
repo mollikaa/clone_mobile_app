@@ -27,6 +27,11 @@ class ShowTimesPage extends StatelessWidget {
       backgroundColor: theme.scaffoldBackgroundColor, 
       appBar: AppBar(
         backgroundColor: Colors.black,
+        title: Text(
+          movieTitle,
+          style: TextStyle(color: Colors.white ),
+        ),
+
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
@@ -66,7 +71,7 @@ class ShowTimesPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Show Times & Tickets Price:',
+          '${languageLogic.lang.timeTicket}',
           style: TextStyle(
             color: isDarkMode ?Colors.white : Colors.black,
             fontSize: 18,
@@ -136,7 +141,7 @@ class ShowTimesPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Cinema Branches:',
+          '${languageLogic.lang.cinema}:',
           style: TextStyle(
             color: isDarkMode ? Colors.white : Colors.black,
             fontSize: 18,
@@ -168,7 +173,7 @@ class ShowTimesPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Screen Types:',
+          '${languageLogic.lang.screenType}:',
           style: TextStyle(
             color: isDarkMode? Colors.white : Colors.black,
             fontSize: 18,

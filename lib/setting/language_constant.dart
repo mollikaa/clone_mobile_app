@@ -47,6 +47,12 @@ class Language {
   String get contactUs => "Contact Us";
   String get privacy => "Privacy Policy";
   String get term => "Term & Conditions";
+  //showtime page
+  String get timeTicket => "Show Times & Tickets Price:";
+  String get branches => "Cinema Branches: ";
+  String get screenType =>"Screen Type: ";
+
+
 }
 
 class Khmer implements Language {
@@ -93,4 +99,9 @@ class Khmer implements Language {
   String get contactUs => "ទាក់ទងមកពួកយើង";
   String get privacy => "គោលការណ៍ភាព​ ឯកជន";
   String get term => "លក្ខខណ្ឌ";
+
+    //showtime page
+  String get timeTicket => "ម៉ោងចាក់បញ្ចាំង និងតម្លៃសំបុត្រ :";
+  String get branches => "សាខារោងកុន : ";
+  String get screenType =>"ប្រភេទអេក្រង់: ";
 }

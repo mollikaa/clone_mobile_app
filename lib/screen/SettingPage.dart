@@ -14,8 +14,6 @@ class Settingpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var languageLogic = context.watch<LanguageLogic>();
-    var fontsizeLogic = context.watch<FontsizeLogic>();
-    //var themeLogic = context.watch<ThemeLogic>();
     int themeIndex = context.watch<ThemeLogic>().themeIndex;    
     return Scaffold(
       body: SingleChildScrollView(
@@ -34,11 +32,7 @@ class Settingpage extends StatelessWidget {
                       onTap: () {
                         Navigator.pop(context); // Navigate back
                       },
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Color.fromARGB(255, 9, 233, 91),
-                        size: 30,
-                      ),
+                      child: Text("Account", style: TextStyle(fontSize: 22),),
                     ),
                                         SizedBox(height: 20),
                     SignInSignUpButtons(),

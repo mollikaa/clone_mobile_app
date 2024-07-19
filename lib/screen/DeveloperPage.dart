@@ -31,12 +31,12 @@ class DeveloperPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         RichText(
-                          text: const TextSpan(
+                          text:  TextSpan(
                             children: [
                               TextSpan(
                                 text: "Legend ",
                                 style: TextStyle(
-                                  color: Colors.white,
+                                  color:isDarkMode? Colors.white : Colors.black,
                                   fontSize: 28,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -112,7 +112,7 @@ class DeveloperPage extends StatelessWidget {
                     Text(
                       "${languageLogic.lang.aboutUs}",
                       style: TextStyle(
-                        color: Colors.white,
+                        color:isDarkMode? Colors.white : Colors.black,
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                       ),
@@ -159,21 +159,21 @@ class DeveloperPage extends StatelessWidget {
       children: [
         _buildDeveloperProfile(
           context: context,
-          imagePath: "images/cus1.jpg",
+          imagePath: "images/mollika.jpg",
           name: "Saran Mollika",
           role: "Software Engineering",
           group: "Group B",
         ),
         _buildDeveloperProfile(
           context: context,
-          imagePath: "images/cus2.jpg",
+          imagePath: "images/sakura.jpg",
           name: "Saroun Sakura",
           role: "Software Engineering",
           group: "Group B",
         ),
         _buildDeveloperProfile(
           context: context,
-          imagePath: "images/cus3.jpg",
+          imagePath: "images/cheata.jpg",
           name: "Koem Socheata",
           role: "Software Engineering",
           group: "Group A",
@@ -232,7 +232,7 @@ class DeveloperPage extends StatelessWidget {
                 ),
                 child: Image.asset(
                   imagePath,
-                  height: 200,
+                  height: 400,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),

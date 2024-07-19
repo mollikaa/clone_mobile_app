@@ -22,19 +22,22 @@ class HomePage extends StatelessWidget {
           SliverAppBar(
             pinned: true,
             floating: true, // Set floating to true to hide when scrolled up
-            //backgroundColor: Colors.black,
-            backgroundColor: theme.scaffoldBackgroundColor, 
-            title: Container(
+            backgroundColor: Colors.black,
+            //backgroundColor: theme.scaffoldBackgroundColor, 
+            title: Center (
+              child: Container(
               width: 148,
               height: 38,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(0),
                 image: DecorationImage(
-                  image: AssetImage(
+                  image: AssetImage( 
                       "images/logo legend.png"), // Replace with your logo image path
                   fit: BoxFit.cover,
                 ),
+                ),
               ),
+            
             ),
             actions: [
               AnimatedOpacity(
@@ -75,7 +78,7 @@ class HomePage extends StatelessWidget {
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
                   //color: Color.fromARGB(255, 33, 36, 35),
-                  color: isDarkMode ? Color.fromARGB(255, 33, 36, 35) : Color(0xFF9D1C1F),
+                  color: Color.fromARGB(255, 33, 36, 35),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(

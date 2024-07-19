@@ -9,9 +9,27 @@ import 'package:clone_app/screen/SeatSelectPage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/fontSize_logic.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 void main() {
-  runApp(const MyApp());
+  //runApp(const MyApp());
+  runApp(providerStateApp());
 }
+
+Widget providerStateApp() {
+  return MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => FontsizeLogic()),
+      ChangeNotifierProvider(create: (context) => ThemeLogic()),
+      ChangeNotifierProvider(create: (context) => LanguageLogic()),
+    ],
+    child: const MyApp(),
+  );
+}
+
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -30,11 +48,24 @@ class MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    int themeIndex = context.watch<ThemeLogic>().themeIndex;
+    double size = context.watch<FontsizeLogic>().size;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+themeMode: themeIndex == 0
+          ? ThemeMode.system
+          : themeIndex == 1
+              ? ThemeMode.light
+              : ThemeMode.dark,
       theme: ThemeData(
-        scaffoldBackgroundColor: const Color(0xFF0F1110),
-      ),
+        brightness: Brightness.light,
+          ),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+          ),
+      // theme: ThemeData(
+      //   scaffoldBackgroundColor: const Color(0xFF0F1110),
+      // ),
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),

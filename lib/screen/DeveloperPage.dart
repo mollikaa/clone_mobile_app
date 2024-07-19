@@ -1,13 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:clone_app/widgets/CustomNavBar.dart';
 
+
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class DeveloperPage extends StatelessWidget {
   const DeveloperPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark; 
     return Scaffold(
-      backgroundColor: Colors.black, // Set the background color here
+     // backgroundColor: Colors.black, // Set the background color here
+     backgroundColor: theme.scaffoldBackgroundColor,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -55,7 +63,8 @@ class DeveloperPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 33, 36, 35),
+                  //color: const Color.fromARGB(255, 33, 36, 35),
+                  color: isDarkMode ? Color.fromARGB(255, 33, 36, 35) : Color(0xFF9D1C1F) ,
                   borderRadius:
                       BorderRadius.circular(5), // Adjust border radius here
                 ),
@@ -71,9 +80,9 @@ class DeveloperPage extends StatelessWidget {
                     Expanded(
                       child: TextFormField(
                         style: const TextStyle(color: Colors.white),
-                        decoration: const InputDecoration(
+                        decoration:  InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search",
+                          hintText: "${languageLogic.lang.hintText}",
                           hintStyle: TextStyle(
                             color: Colors.white54,
                           ),
@@ -95,13 +104,13 @@ class DeveloperPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 10),
-              const Padding(
+               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Developer Screen",
+                      "${languageLogic.lang.aboutUs}",
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 25,
@@ -112,7 +121,7 @@ class DeveloperPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 15), // Added SizedBox for spacing
-              _buildDeveloperProfiles(), // Function to build developer profiles
+              _buildDeveloperProfiles(context), // Function to build developer profiles
               const SizedBox(height: 10),
             ],
           ),
@@ -128,11 +137,13 @@ class DeveloperPage extends StatelessWidget {
             Navigator.pushNamed(context, '/offersPage');
           } else if (index == 2) {
             Navigator.pushNamed(context, '/locationPage');
-          } else if (index == 3) {
-            Navigator.pushNamed(context, '/developerPage');
-          } else if (index == 4) {
+          } 
+          // else if (index == 3) {
+          //   Navigator.pushNamed(context, '/developerPage');
+          // } 
+          else if (index == 3) {
             Navigator.pushNamed(context, '/fbPage');
-          } else if (index == 5) {
+          } else if (index == 4) {
             Navigator.pushNamed(context, '/settingPage');
           }
         },
@@ -140,28 +151,35 @@ class DeveloperPage extends StatelessWidget {
     );
   }
 
-  Widget _buildDeveloperProfiles() {
+  Widget _buildDeveloperProfiles(BuildContext context) {
+        var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;  
     return Column(
       children: [
         _buildDeveloperProfile(
+          context: context,
           imagePath: "images/cus1.jpg",
           name: "Saran Mollika",
           role: "Software Engineering",
           group: "Group B",
         ),
         _buildDeveloperProfile(
+          context: context,
           imagePath: "images/cus2.jpg",
           name: "Saroun Sakura",
           role: "Software Engineering",
           group: "Group B",
         ),
         _buildDeveloperProfile(
+          context: context,
           imagePath: "images/cus3.jpg",
           name: "Koem Socheata",
           role: "Software Engineering",
           group: "Group A",
         ),
         _buildDeveloperProfile(
+          context: context,
           imagePath: "images/cus4.jpg",
           name: "Uth Kim Oun",
           role: "Software Engineering",
@@ -172,17 +190,22 @@ class DeveloperPage extends StatelessWidget {
   }
 
   Widget _buildDeveloperProfile({
+    required BuildContext context,
     required String imagePath,
     required String name,
     required String role,
     required String group,
   }) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: const Color(0xFF292837),
+          //color: const Color(0xFF292837),
+          color: isDarkMode ? const Color(0xFF292837) : Colors.white,
           borderRadius: BorderRadius.circular(10),
           boxShadow: [
             BoxShadow(
@@ -222,16 +245,18 @@ class DeveloperPage extends StatelessWidget {
                 children: [
                   Text(
                     name,
-                    style: const TextStyle(
-                      color: Colors.white,
+                    style:  TextStyle(
+                      // color: Colors.white,
+                      color: isDarkMode ? Colors.white : Colors.black,
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   Text(
                     role,
-                    style: const TextStyle(
-                      color: Colors.white70,
+                    style: TextStyle(
+                      //color: Colors.white70,
+                      color: isDarkMode ? Colors.white : Colors.black,
                     ),
                   ),
                   const SizedBox(height: 5),
@@ -240,8 +265,9 @@ class DeveloperPage extends StatelessWidget {
                       const SizedBox(width: 5),
                       Text(
                         group,
-                        style: const TextStyle(
-                          color: Colors.white70,
+                        style:  TextStyle(
+                          //color: Colors.white70,
+                          color: isDarkMode ? Colors.white : Colors.black,
                           fontSize: 14,
                         ),
                       ),

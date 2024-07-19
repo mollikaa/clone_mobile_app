@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'package:clone_app/widgets/CustomNavBar.dart';
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class MovieDetailPage extends StatelessWidget {
   final String movieTitle;
   final String genre;
@@ -23,8 +27,12 @@ class MovieDetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;    
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor, 
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
@@ -110,7 +118,8 @@ class MovieDetailPage extends StatelessWidget {
                   Text(
                     movieTitle,
                     style: TextStyle(
-                      color: Colors.white,
+                      // color: Colors.white,
+                      color: isDarkMode ? Colors.white : Colors.black,
                       fontSize: 24,
                       fontWeight: FontWeight.bold,
                     ),
@@ -118,18 +127,19 @@ class MovieDetailPage extends StatelessWidget {
                   SizedBox(height: 5),
                   _buildScreenTypes(screenTypes),
                   SizedBox(height: 5),
-                  _buildLabelWithIcon(Icons.movie, 'Genre', genre),
+                  _buildLabelWithIcon(context: context, Icons.movie, '${languageLogic.lang.genre}', genre),
                   SizedBox(height: 5),
-                  _buildLabelWithIcon(Icons.timer, 'Duration', duration),
+                  _buildLabelWithIcon(context: context, Icons.timer, '${languageLogic.lang.duration}', duration),
                   SizedBox(height: 5),
-                  _buildLabelWithIcon(Icons.calendar_today, 'Release Date', releaseDate),
+                  _buildLabelWithIcon(context: context, Icons.calendar_today, '${languageLogic.lang.releaseDate}', releaseDate),
                   SizedBox(height: 5),
-                  _buildLabelWithIcon(Icons.label, 'Classification', classification),
+                  _buildLabelWithIcon(context: context, Icons.label, '${languageLogic.lang.classification}', classification),
                   SizedBox(height: 20),
                   Text(
                     description,
                     style: TextStyle(
-                      color: Colors.white70,
+                      // color: Colors.white70,
+                      color: isDarkMode ? Colors.white : Colors.black,
                       fontSize: 16,
                     ),
                   ),
@@ -145,7 +155,7 @@ class MovieDetailPage extends StatelessWidget {
                         minimumSize: Size(double.infinity, 50),
                       ),
                       child: Text(
-                        'View Show Time',
+                        '${languageLogic.lang.showTime}',
                         style: TextStyle(color: Colors.white, fontSize: 16), // Text color
                       ),
                     ),
@@ -178,8 +188,12 @@ class MovieDetailPage extends StatelessWidget {
       }).toList(),
     );
   }
-
-  Widget _buildLabelWithIcon(IconData icon, String label, String value) {
+  Widget _buildLabelWithIcon(icon, String label, String value ,{
+    required BuildContext context,
+  }) {
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;   
     return Row(
       children: [
         IconButton(
@@ -191,12 +205,13 @@ class MovieDetailPage extends StatelessWidget {
         Text(
           '$label: $value',
           style: TextStyle(
-            color: Colors.white70,
+            // color: Colors.white70,
+            color: isDarkMode ? Colors.white70 : Colors.black,
             fontSize: 16,
           ),
         ),
       ],
     );
   }
-
+  
 }

@@ -3,17 +3,27 @@ import 'package:clone_app/widgets/CustomNavBar.dart';
 import 'package:clone_app/widgets/NewMoviesWidget.dart';
 import 'package:clone_app/widgets/UpcomingWidget.dart';
 
+
+import 'package:provider/provider.dart';
+import 'package:clone_app/setting/language_logic.dart';
+import 'package:clone_app/setting/theme_logic.dart';
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    var languageLogic = context.watch<LanguageLogic>();
+    var theme = Theme.of(context);
+    bool isDarkMode = theme.brightness == Brightness.dark;  
     return Scaffold(
-      backgroundColor: Colors.black,
+      // backgroundColor: Colors.black,
+      backgroundColor: theme.scaffoldBackgroundColor, 
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
             pinned: true,
             floating: true, // Set floating to true to hide when scrolled up
-            backgroundColor: Colors.black,
+            //backgroundColor: Colors.black,
+            backgroundColor: theme.scaffoldBackgroundColor, 
             title: Container(
               width: 148,
               height: 38,
@@ -64,7 +74,8 @@ class HomePage extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 10),
                 margin: EdgeInsets.symmetric(horizontal: 10),
                 decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 33, 36, 35),
+                  //color: Color.fromARGB(255, 33, 36, 35),
+                  color: isDarkMode ? Color.fromARGB(255, 33, 36, 35) : Color(0xFF9D1C1F),
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Row(
@@ -81,7 +92,7 @@ class HomePage extends StatelessWidget {
                         style: TextStyle(color: Colors.white),
                         decoration: InputDecoration(
                           border: InputBorder.none,
-                          hintText: "Search",
+                          hintText: "${languageLogic.lang.hintText}",
                           hintStyle: TextStyle(
                             color: Colors.white54,
                           ),
@@ -123,9 +134,11 @@ class HomePage extends StatelessWidget {
             Navigator.pushNamed(context, '/offersPage');
           } else if (index == 2) {
             Navigator.pushNamed(context, '/locationPage');
-          } else if (index == 3) {
-            Navigator.pushNamed(context, '/developerPage');
-          } else if (index == 4) {
+          } 
+          //else if (index == 3) {
+          //   Navigator.pushNamed(context, '/developerPage');
+          // } 
+          else if (index == 3) {
             Navigator.pushNamed(context, '/settingPage');
           }
         },
